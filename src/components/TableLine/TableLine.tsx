@@ -23,21 +23,19 @@ const TableLine = (props: { json: TableLineProps[] }) => {
     });
   };
 
-  const table = () => {
-    props.json.forEach((item) => {
-      return (
+  props.json.forEach((item) => {
+    return (
+      <tr>
+        <td>{item.name} </td>)
         <tr>
-          <td>{item.name} </td>)
-          <tr>
-            <td>
-              <>{speed(item)}</>
-            </td>
-          </tr>
+          <td>
+            <>{speed(item)}</>
+          </td>
         </tr>
-      );
-    });
-  };
+      </tr>
+    );
+  });
 
-  return <>{table()} </>;
+  return <></>;
 };
 export default TableLine;

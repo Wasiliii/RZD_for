@@ -16,21 +16,20 @@ const Table = () => {
   ]);
 
   useEffect(() => {
-    const arrTake = async () => {
+    async function takeArr() {
       const response = await fetch(
         'https://gist.githubusercontent.com/GlennMiller1991/152583a1bf1e057e8db06f5949ae3dda/raw/f84adf51092706ae0e7c0abc7589ad49800d8112/trains.json',
       );
       if (response.status === 200) {
         const json = await response.json();
-        json.forEach((item: TableLineProps, index: number) => {
-          //    let a:{ speedLimits: { name: string; speedLimit: number }[]; name: string; description: string }[]= state
-
-          setState(state.splice(index + 1, 0, item));
-        });
+        setState(json);
+        // json.forEach((item: TableLineProps) => {
+        //   setState([item]);
+        // });
       }
-    };
-    arrTake();
-  });
+    }
+    takeArr();
+  }, []);
 
   console.log(state);
 

@@ -9,33 +9,35 @@ export interface TableLineProps {
 
 const TableLine = (props: { json: TableLineProps[] }) => {
   const speed = (item: TableLineProps) => {
-    item.speedLimits.forEach((item) => {
+    return item.speedLimits.map((item) => {
       return (
         <tr>
           <td>
-            <input>{item.name}</input>
+            <input value={item.name}></input>
           </td>
           <td>
-            <input>{item.speedLimit}</input>
+            <input value={item.speedLimit}></input>
           </td>
         </tr>
       );
     });
   };
 
-  props.json.forEach((item) => {
-    return (
-      <tr>
-        <td>{item.name} </td>)
-        <tr>
-          <td>
-            <>{speed(item)}</>
-          </td>
-        </tr>
-      </tr>
-    );
-  });
-
-  return <></>;
+  return (
+    <>
+      {props.json.map((item) => {
+        return (
+          <tr>
+            <td>{item.name} </td>
+            <tr>
+              <td>
+                <>{speed(item)}</>
+              </td>
+            </tr>
+          </tr>
+        );
+      })}
+    </>
+  );
 };
 export default TableLine;

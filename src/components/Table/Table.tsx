@@ -1,19 +1,9 @@
 import TableLine, { TableLineProps } from '@/components/TableLine/TableLine';
 import { useEffect, useState } from 'react';
+import './style.css';
 
 const Table = () => {
-  const [state, setState] = useState([
-    {
-      name: '',
-      description: '',
-      speedLimits: [
-        {
-          name: '',
-          speedLimit: 0,
-        },
-      ],
-    },
-  ]);
+  const [state, setState] = useState<TableLineProps[]>();
 
   useEffect(() => {
     async function takeArr() {
@@ -23,19 +13,15 @@ const Table = () => {
       if (response.status === 200) {
         const json = await response.json();
         setState(json);
-        // json.forEach((item: TableLineProps) => {
-        //   setState([item]);
-        // });
       }
     }
     takeArr();
   }, []);
-
-  console.log(state);
+  if (!state) return <>Загрузка данных</>;
 
   return (
     <>
-      <table>
+      <table className="table">
         <thead>
           <tr>
             <th>Номер поезда</th>
@@ -43,9 +29,27 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          <TableLine json={state}></TableLine>
+          <TableLine json={state} changedState={setState}></TableLine>
         </tbody>
       </table>
+
+      <button
+        className="button"
+        onClick={() => {
+          const arr = state?.map((train) => {
+            return {
+              ...train,
+              speedLimits: train.speedLimits.sort((a, b) => {
+                return a.speedLimit - b.speedLimit;
+              }),
+            };
+          });
+          console.info(arr);
+          console.info('ok');
+        }}
+      >
+        Сохранить
+      </button>
     </>
   );
 };

@@ -46,7 +46,6 @@ const TableLine = (props: { json: TableLineProps[]; changedState: (newValue: Tab
             </td>
           </tr>
         );
-      return <></>;
     });
   };
 

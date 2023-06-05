@@ -33,7 +33,14 @@
 }
 
 .button {
+  position: sticky;
+  top: 10%;
+  height: 5%;
   margin: 15px;
   padding: 15px;
 color: #747bff;
+}
+
+.display{
+  display: flex;
 }

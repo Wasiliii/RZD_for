@@ -6,9 +6,6 @@
     },
     "extends": [
         "plugin:react/recommended",
-        "airbnb",
-        "airbnb-typescript",
-        "airbnb/hooks",
         "plugin:@typescript-eslint/recommended",
         "prettier"
     ],
@@ -41,16 +38,7 @@
         "prettier/prettier": "error",
         "react/react-in-jsx-scope": "off",
         "react/prop-types": "off",
-        "react/jsx-no-bind": "off",
-        "import/extensions": [
-            "error",
-            "ignorePackages",
-            {
-              "js": "never",
-              "jsx": "never",
-              "ts": "never",
-              "tsx": "never"
-            }
-        ]
+        "react/jsx-no-bind": "off"
+
     }
 }
